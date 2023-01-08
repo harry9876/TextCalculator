@@ -40,6 +40,21 @@ namespace TextCalculator.Tests
         }
 
         [Test]
+        public void Build_DecreaseInput_CreateDecreaseExpression()
+        {
+            var inputs = new string[] { "j=i--" };
+
+            var expression = ExpressionBuilder.Build(inputs);
+
+            var excepted =
+                new SetExpression('j', new DecreaseExpression('i', Order.Post));
+
+
+            Assert.That(excepted.ToString(), Is.EqualTo(expression[0].ToString()));
+        }
+
+
+        [Test]
         public void Build_OperationInput_CreateOperationExpression()
         {
             var input = "x=2+4";

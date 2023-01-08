@@ -12,7 +12,7 @@ namespace TextCalculator.Tests
         {
         }
         [Test]
-        public void PRE_setMENT_CHECK_POSITIVE()
+        public void PRE_INCREASE_CHECK_POSITIVE()
         {
             const string input = "++i";
 
@@ -23,9 +23,29 @@ namespace TextCalculator.Tests
         }
 
         [Test]
-        public void POST_SET_CHECK_POSITIVE()
+        public void POST_INCREASE_CHECK_POSITIVE()
         {
             const string input = "i++";
+
+            var match = Regex.Match(input, RegularExpression.POST_SET_CHECK);
+
+            Assert.IsTrue(match.Success);
+        }
+
+        public void PRE_DECREASE_CHECK_POSITIVE()
+        {
+            const string input = "--i";
+
+            var match = Regex.Match(input, RegularExpression.PRE_SET_CHECK);
+
+            Assert.IsTrue(match.Success);
+
+        }
+
+        [Test]
+        public void POST_DECREASE_CHECK_POSITIVE()
+        {
+            const string input = "i--";
 
             var match = Regex.Match(input, RegularExpression.POST_SET_CHECK);
 

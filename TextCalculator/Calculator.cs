@@ -53,7 +53,7 @@ namespace TextCalculator
         {
             if (operation == null) return;
 
-            var increase = operation as IncreaseExpression;
+            var increase = operation as OrderExpression;
 
             if (increase != null && increase.Order == order)
             {

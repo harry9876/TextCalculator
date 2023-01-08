@@ -8,37 +8,17 @@ using TextCalculator.Expression;
 
 namespace TextCalculator
 {
-    public class IncreaseExpression : OperationExpression, ISetExpression
+    public class IncreaseExpression : OrderExpression, ISetExpression
     {
-        public Order Order { get; private set; }
-
-        private SetExpression _InnerSet;
-
-        public char Variable => ((VariableExpression)Left).X;
 
         public IncreaseExpression(char variable, Order order)
-            : base(new VariableExpression(variable), new NumberExpression(1), '+')
+            : base(variable, order, '+')
         {
-            Order = order;
-            _InnerSet = new SetExpression(variable, new OperationExpression(new VariableExpression(variable), new NumberExpression(1), '+'));
         }
 
-        public override int Evulate(Func<char, int> mapper)
-        {
-            return Left.Evulate(mapper);
-        }
-
-        public ISetExpression GetSetter()
-        {
-            return _InnerSet;
-        }
     }
 
-    public enum Order
-    {
-        Pre,
-        Post
-    }
+
 
 
 }
