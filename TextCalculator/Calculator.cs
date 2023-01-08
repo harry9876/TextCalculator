@@ -38,7 +38,7 @@ namespace TextCalculator
                 }
                 catch (Exception)
                 {
-                    throw new Exception("expression evulate failed");
+                    throw new Exception("expression evaluate failed");
                 }
             }
 
@@ -72,7 +72,7 @@ namespace TextCalculator
         }
         private static KeyValuePair<char, int> GetPair(ISetExpression expression, Func<char, int> mapper)
         {
-            var value = expression.Evulate(mapper);
+            var value = expression.Evaluate(mapper);
 
             var key = expression.Variable;
 

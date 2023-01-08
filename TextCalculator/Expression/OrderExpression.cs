@@ -23,9 +23,9 @@ namespace TextCalculator
             _InnerSet = new SetExpression(variable, new OperationExpression(new VariableExpression(variable), new NumberExpression(1), operation));
         }
 
-        public override int Evulate(Func<char, int> mapper)
+        public override int Evaluate(Func<char, int> mapper)
         {
-            return Left.Evulate(mapper);
+            return Left.Evaluate(mapper);
         }
 
         public ISetExpression GetSetter()

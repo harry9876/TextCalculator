@@ -21,19 +21,19 @@ namespace TextCalculator
 
         public char Opration { get; set; }
 
-        public virtual int Evulate(Func<char, int> mapper)
+        public virtual int Evaluate(Func<char, int> mapper)
         {
-            var xValue = Left.Evulate(mapper);
+            var xValue = Left.Evaluate(mapper);
 
             if (Right == default(IExpression)) return xValue;
 
-            var yValue = Right.Evulate(mapper);
+            var yValue = Right.Evaluate(mapper);
 
-            return EvulateOperation(xValue, yValue);
+            return EvaluateOperation(xValue, yValue);
         }
 
 
-        private int EvulateOperation(int x, int y) => Opration switch
+        private int EvaluateOperation(int x, int y) => Opration switch
         {
             '+' => x + y,
             '-' => x - y,

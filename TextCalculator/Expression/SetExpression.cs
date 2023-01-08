@@ -18,9 +18,9 @@ namespace TextCalculator.Expression
             Right = y;
         }
 
-        public int Evulate(Func<char, int> mapper)
+        public int Evaluate(Func<char, int> mapper)
         {
-            return Right.Evulate(mapper);
+            return Right.Evaluate(mapper);
         }
 
         public ISetExpression GetSetter()

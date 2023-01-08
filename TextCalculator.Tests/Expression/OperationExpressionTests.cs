@@ -9,36 +9,36 @@ namespace TextCalculator.Tests.Expression
     internal class OperationExpressionTests
     {
         [Test]
-        public void Evulate_PlusOperator_Correct()
+        public void Evaluate_PlusOperator_Correct()
         {
             var expression = new OperationExpression(new NumberExpression(1), new NumberExpression(2), '+');
 
-            Assert.That(expression.Evulate(null), Is.EqualTo(3));
+            Assert.That(expression.Evaluate(null), Is.EqualTo(3));
         }
 
         [Test]
-        public void Evulate_MinusOperator_Correct()
+        public void Evaluate_MinusOperator_Correct()
         {
             var expression = new OperationExpression(new NumberExpression(3), new NumberExpression(2), '-');
 
-            Assert.That(expression.Evulate(null), Is.EqualTo(1));
+            Assert.That(expression.Evaluate(null), Is.EqualTo(1));
         }
 
 
         [Test]
-        public void Evulate_MulOperator_Correct()
+        public void Evaluate_MulOperator_Correct()
         {
             var expression = new OperationExpression(new NumberExpression(3), new NumberExpression(2), '*');
 
-            Assert.That(expression.Evulate(null), Is.EqualTo(6));
+            Assert.That(expression.Evaluate(null), Is.EqualTo(6));
         }
 
         [Test]
-        public void Evulate_DivOperator_Correct()
+        public void Evaluate_DivOperator_Correct()
         {
             var expression = new OperationExpression(new NumberExpression(6), new NumberExpression(2), '/');
 
-            Assert.That(expression.Evulate(null), Is.EqualTo(3));
+            Assert.That(expression.Evaluate(null), Is.EqualTo(3));
         }
 
     }

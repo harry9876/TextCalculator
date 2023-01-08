@@ -56,11 +56,11 @@ namespace TextCalculator.Tests
         }
 
         [Test]
-        public void Evulate_CorrectValue()
+        public void Evaluate_CorrectValue()
         {
             var expression = new IncreaseExpression('i', Order.Pre);
 
-            var setValue = expression.Evulate((c) => 5);
+            var setValue = expression.Evaluate((c) => 5);
 
             Assert.That(setValue, Is.EqualTo(5));
         }

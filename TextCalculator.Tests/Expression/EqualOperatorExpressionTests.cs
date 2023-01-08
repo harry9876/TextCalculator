@@ -47,11 +47,11 @@ namespace TextCalculator.Tests
 
 
         [Test]
-        public void Evulate_CorrectValue()
+        public void Evaluate_CorrectValue()
         {
             var expression = new EqualOperationExpression('i', new NumberExpression(9), '+');
 
-            Assert.That(expression.Evulate(x => 5), Is.EqualTo(14));
+            Assert.That(expression.Evaluate(x => 5), Is.EqualTo(14));
 
         }
 

@@ -9,11 +9,11 @@ namespace TextCalculator.Tests.Expression
     internal class VariableExpressionTests
     {
         [Test]
-        public void Evulate_ReturnOutValue()
+        public void Evaluate_ReturnOutValue()
         {
             var expression = new VariableExpression('i');
 
-            Assert.That(expression.Evulate(i => 5), Is.EqualTo(5));
+            Assert.That(expression.Evaluate(i => 5), Is.EqualTo(5));
         }
     }
 }

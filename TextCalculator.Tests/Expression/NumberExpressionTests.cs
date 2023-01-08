@@ -9,11 +9,11 @@ namespace TextCalculator.Tests.Expression
     internal class NumberExpressionTests
     {
         [Test]
-        public void Evulate_ReturnValue_IgnoreMapper()
+        public void Evaluate_ReturnValue_IgnoreMapper()
         {
             var expression = new NumberExpression(5);
 
-            Assert.That(expression.Evulate(i => 10), Is.EqualTo(5));
+            Assert.That(expression.Evaluate(i => 10), Is.EqualTo(5));
         }
     }
 }

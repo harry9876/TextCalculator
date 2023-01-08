@@ -15,7 +15,7 @@ namespace TextCalculator
         }
 
         public T X { get; set; }
-        public abstract int Evulate(Func<char, int> mapper);
+        public abstract int Evaluate(Func<char, int> mapper);
 
         public override string ToString()
         {

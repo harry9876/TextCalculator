@@ -9,6 +9,6 @@ namespace TextCalculator
 
     public interface IExpression
     {
-        int Evulate(Func<char, int> mapper);
+        int Evaluate(Func<char, int> mapper);
     }
 }

@@ -10,7 +10,7 @@ namespace TextCalculator
     {
         public VariableExpression(char x) : base(x) { }
 
-        public override int Evulate(Func<char, int> mapper)
+        public override int Evaluate(Func<char, int> mapper)
         {
             return mapper(X);
         }
