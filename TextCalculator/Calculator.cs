@@ -20,17 +20,25 @@ namespace TextCalculator
 
             foreach (var expression in expressions)
             {
-
-                foreach (var set in GetInnerSetters(expression.Right as OperationExpression, Order.Pre))
+                try
                 {
-                    AddOrUpdate(values, GetPair(set, mapper));
+
+
+                    foreach (var set in GetInnerSetters(expression.Right as OperationExpression, Order.Pre))
+                    {
+                        AddOrUpdate(values, GetPair(set, mapper));
+                    }
+
+                    AddOrUpdate(values, GetPair(expression, mapper));
+
+                    foreach (var set in GetInnerSetters(expression.Right as OperationExpression, Order.Post))
+                    {
+                        AddOrUpdate(values, GetPair(set, mapper));
+                    }
                 }
-
-                AddOrUpdate(values, GetPair(expression, mapper));
-
-                foreach (var set in GetInnerSetters(expression.Right as OperationExpression, Order.Post))
+                catch (Exception)
                 {
-                    AddOrUpdate(values, GetPair(set, mapper));
+                    throw new Exception("expression evulate failed");
                 }
             }
 

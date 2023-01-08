@@ -174,6 +174,26 @@ namespace TextCalculator.Tests
             AssertEqualDic(actual, excepted);
         }
 
+        [Test]
+        public void Calc_InnerDecreaseExpression_CalcInnerDecrease()
+        {
+            _set = new List<ISetExpression>()
+            {
+                new SetExpression('i', new NumberExpression(10)),
+                new SetExpression('x', new OperationExpression( new DecreaseExpression('i',Order.Post),new NumberExpression(5),'+'))
+            };
+
+            var actual = _calculator.Calc(_set);
+
+            var excepted = new Dictionary<char, int>
+            {
+                { 'i',9},
+                { 'x',15}
+            };
+
+            AssertEqualDic(actual, excepted);
+        }
+
 
         private void AssertEqualDic(Dictionary<char, int> actual, Dictionary<char, int> excepted)
         {
