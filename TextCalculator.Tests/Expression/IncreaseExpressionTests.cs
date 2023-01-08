@@ -28,6 +28,14 @@ namespace TextCalculator.Tests
         }
 
         [Test]
+        public void Ctor_CorrectOperationSet()
+        {
+            var expression = new IncreaseExpression('i', Order.Post);
+
+            Assert.That(expression.Opration, Is.EqualTo('+'));
+        }
+
+        [Test]
         public void Ctor_CorrectRightSet()
         {
             var expression = new IncreaseExpression('i', Order.Post);

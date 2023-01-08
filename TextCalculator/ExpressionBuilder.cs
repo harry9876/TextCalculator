@@ -25,8 +25,8 @@ namespace TextCalculator
         {
             { RegularExpression.EQUAL_OPERATION_CHECK, EqualOperationCreator() } ,
             { RegularExpression.OPERATION_CHECK, OperationCreator() } ,
-            { RegularExpression.PRE_SET_CHECK, PreIncreaseCreator() },
-            { RegularExpression.POST_SET_CHECK,PostIncreaseCreator() },
+            { RegularExpression.PRE_SET_CHECK, PreOrderCreator() },
+            { RegularExpression.POST_SET_CHECK,PostOrderCreator() },
             { RegularExpression.BRACKET_CHECK, OperationCreator() },
             { RegularExpression.SIMPLE_SET_CHECK, SimpleSetCreator() },
             { RegularExpression.EXPRESSION_REST_CHECK, ExpressionRestCreator() },
@@ -34,7 +34,7 @@ namespace TextCalculator
 
         };
 
-       
+
 
         public static IList<ISetExpression> Build(IEnumerable<string> inputs)
         {
@@ -149,11 +149,13 @@ namespace TextCalculator
             };
         }
 
-        private static Func<Match, PartialExpression, PartialExpression> PreIncreaseCreator()
+        private static Func<Match, PartialExpression, PartialExpression> PreOrderCreator()
         {
             return (m, inner) =>
             {
-                inner.Expression = new IncreaseExpression(m.Groups[2].Value[0], Order.Pre);
+                var op = m.Groups[1].Value[0];
+                inner.Expression = op == '+' ? new IncreaseExpression(m.Groups[2].Value[0], Order.Pre) :
+                 new DecreaseExpression(m.Groups[2].Value[0], Order.Pre);
 
                 return inner;
             };
@@ -172,11 +174,14 @@ namespace TextCalculator
             };
         }
 
-        private static Func<Match, PartialExpression, PartialExpression> PostIncreaseCreator()
+        private static Func<Match, PartialExpression, PartialExpression> PostOrderCreator()
         {
             return (m, inner) =>
             {
-                inner.Expression = new IncreaseExpression(m.Groups[1].Value[0], Order.Post);
+                var op = m.Groups[2].Value[0];
+
+                inner.Expression = op == '+' ? new IncreaseExpression(m.Groups[1].Value[0], Order.Post) :
+                new DecreaseExpression(m.Groups[1].Value[0], Order.Post);
 
                 return inner;
             };

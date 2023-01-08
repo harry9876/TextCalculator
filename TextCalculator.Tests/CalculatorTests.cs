@@ -56,6 +56,46 @@ namespace TextCalculator.Tests
         }
 
         [Test]
+
+        public void Calc_PreDecrease_J_Decreasted()
+        {
+            _set = new List<ISetExpression>()
+            {
+                new SetExpression('i',new NumberExpression(3)),
+                new SetExpression('j', new DecreaseExpression( 'i',Order.Pre)),
+            };
+
+            var actual = _calculator.Calc(_set);
+
+            var excepted = new Dictionary<char, int>
+            {
+                { 'i',2},
+                { 'j',2}
+            };
+
+            AssertEqualDic(actual, excepted);
+        }
+        [Test]
+        public void Calc_PostDecrease_J_NotDecreasted()
+        {
+            _set = new List<ISetExpression>()
+            {
+                new SetExpression('i',new NumberExpression(3)),
+                new SetExpression('j', new DecreaseExpression( 'i',Order.Post)),
+            };
+
+            var actual = _calculator.Calc(_set);
+
+            var excepted = new Dictionary<char, int>
+            {
+                { 'i',2},
+                { 'j',3}
+            };
+
+            AssertEqualDic(actual, excepted);
+        }
+
+        [Test]
         public void Calc_VariableSettingExpression_ReturnVariableValue()
         {
 
@@ -129,6 +169,26 @@ namespace TextCalculator.Tests
             {
                 { 'x',5},
                 { 'i',1}
+            };
+
+            AssertEqualDic(actual, excepted);
+        }
+
+        [Test]
+        public void Calc_InnerDecreaseExpression_CalcInnerDecrease()
+        {
+            _set = new List<ISetExpression>()
+            {
+                new SetExpression('i', new NumberExpression(10)),
+                new SetExpression('x', new OperationExpression( new DecreaseExpression('i',Order.Post),new NumberExpression(5),'+'))
+            };
+
+            var actual = _calculator.Calc(_set);
+
+            var excepted = new Dictionary<char, int>
+            {
+                { 'i',9},
+                { 'x',15}
             };
 
             AssertEqualDic(actual, excepted);
